@@ -32,7 +32,7 @@
 			margin-bottom: 0;
 		}
 
-		div#selectedStates ul li {
+		div#selectedStates ul li, div#selectedStates ul span {
 			padding: 0.6rem 1.2rem;
 			margin: 1rem;
 			cursor: pointer;
@@ -43,11 +43,15 @@
 			border-radius: 7px;
 			transition: all 0.5s;
 		}
+		#deselect-Ok {
+  background: #666 !important;
+  border-radius: 0 !important;
+}
 		.active {
 			background: #000 !important;
 		}
 		/* theme btn */
-		.ok_done a {
+		.ok_done a{
 			text-decoration: none;
 			font-size: 1.2rem;
 			background: orange;
@@ -79,6 +83,7 @@
 		<div class="Main_map">
             <div id="selectedStates">
                 <ul>
+                    <span id="deselect-Ok">Deselect</span>
                     <li id="orange">Blue</li>
                     <li id="green">Green</li>
                     <li id="red">Red</li>
@@ -118,7 +123,7 @@
             document.querySelector('.ok_done a').addEventListener('click', function () {
                 let targetElement = document.getElementById('selected-states-list');
                 targetElement.classList.add('selectedlist');
-            }); /*  */
+            }); 
         </script>
 		
 	</body>
