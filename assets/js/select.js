@@ -177,7 +177,6 @@
         }        
       } else { // Select on click
         var index = selected.indexOf(state);   
-        console.log(index);
         if (index > -1) { // Deselect state
           deselect(state);
           var listItem = ul.querySelector('li[data-state="' + state + '"]');
