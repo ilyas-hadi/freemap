@@ -1,89 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <title>Map Example</title>
-    <style>
-		html,body{
-			scroll-behavior:smooth;
-		}
-		ul#selected-states-list {
-			display: none;
-		}
-		ul#selected-states-list.selectedlist {
-			display: block;
-		}
-		.Main_map {
-			overflow: hidden;
-			width: 96vw;
-			margin: 0 auto;
-		}
-		text {
-			fill: #000000d7;
-		}
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Map Example</title>
+        <style>
+            html,
+            body {
+                scroll-behavior: smooth;
+            }
+            ul#selected-states-list {
+                display: none;
+                align-items: center;
+                flex-wrap: wrap;
+                line-height: 2;
+            }
+            ul#selected-states-list.selectedlist {
+                display: flex;
+            }
+            .Main_map {
+                overflow: hidden;
+                width: 96vw;
+                margin: 0 auto;
+            }
+            text {
+                fill: #000000d7;
+            }
 
-		div#selectedStates ul {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			list-style: none;
-			padding-left: 0;
-			margin-bottom: 0;
-		}
+            div#selectedStates ul {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                list-style: none;
+                padding-left: 0;
+                margin-bottom: 0;
+            }
 
-		div#selectedStates ul li, div#selectedStates ul span {
-			padding: 0.6rem 1.2rem;
-			margin: 1rem;
-			cursor: pointer;
-			background: orange;
-			color: #fff;
-			font-size: 1rem;
-			font-weight: 700;
-			border-radius: 7px;
-			transition: all 0.5s;
-		}
-		#deselect-Ok {
-  background: #666 !important;
-  border-radius: 0 !important;
-}
-		.active {
-			background: #000 !important;
-		}
-		/* theme btn */
-		.ok_done a{
-			text-decoration: none;
-			font-size: 1.2rem;
-			background: orange;
-			padding: 10px 40px;
-			color: #fff;
-			margin: 0;
-			text-align: center;
-			display: inline-block;
-			box-shadow: rgba(50, 50, 93, 0.25) 0 13px 27px -5px, rgba(0, 0, 0, 0.3) 0 8px 16px -8px;
-			transition: all 0.3s;
-		}
+            div#selectedStates ul li{
+                padding: 0.6rem 1.2rem;
+                margin: 1rem;
+                cursor: pointer;
+                background: orange;
+                color: #fff;
+                font-size: 1rem;
+                font-weight: 700;
+                border-radius: 7px;
+                transition: all 0.5s;
+            }
+            .active {
+                background: #000 !important;
+            }
+            /* theme btn */
+            .ok_done a {
+                text-decoration: none;
+                font-size: 1.2rem;
+                background: orange;
+                padding: 10px 40px;
+                color: #fff;
+                margin: 0;
+                text-align: center;
+                display: inline-block;
+                box-shadow: rgba(50, 50, 93, 0.25) 0 13px 27px -5px, rgba(0, 0, 0, 0.3) 0 8px 16px -8px;
+                transition: all 0.3s;
+            }
 
-		.ok_done {
-			text-align: center;
-		}
+            .ok_done {
+                text-align: center;
+            }
 
-		.ok_done a:hover {
-			box-shadow: rgba(0, 0, 0, 0.35) -1px 13px 20px 0;
-			background: #000;
-		}
-		div#tt_sm_map + div {
-			visibility: hidden;
-			opacity: 0;
-			display: none;
-		}
-	</style>
-  </head>
-	<body>
-		<div class="Main_map">
+            .ok_done a:hover {
+                box-shadow: rgba(0, 0, 0, 0.35) -1px 13px 20px 0;
+                background: #000;
+            }
+            div#tt_sm_map + div {
+                visibility: hidden;
+                opacity: 0;
+                display: none;
+            }
+            /* list in briks style */
+
+            ul#selected-states-list li {
+                column-count: 2;
+                background: #e5e5e5;
+                margin: 0.5rem;
+                display: flex;
+                align-items: center;
+                padding: 5px 6px;
+                border-radius: 6px;
+                width: 100px;
+                justify-content: center;
+                transition: all 0.3s;
+            }
+
+            ul#selected-states-list li:hover {
+                background: #000;
+                color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="Main_map">
             <div id="selectedStates">
                 <ul>
-                    <span id="deselect-Ok">Deselect</span>
                     <li id="orange">Blue</li>
                     <li id="green">Green</li>
                     <li id="red">Red</li>
@@ -99,8 +117,8 @@
             <h1>Selected States</h1>
             <ul id="selected-states-list"></ul>
         </div>
-		<!-- scripts -->
-		<script src="./assets/js/mapdata.js"></script>
+        <!-- scripts -->
+        <script src="./assets/js/mapdata.js"></script>
         <script src="./assets/js/usmap.js"></script>
         <script src="./assets/js/select.js"></script>
         <script>
@@ -109,13 +127,11 @@
 
             // Add click event listeners to each list item
             listItems.forEach(item => {
-                item.addEventListener('click', function () { // Remove "active" class from all list items
-                    listItems.forEach(item => {
-                        item.classList.remove('active');
-                    });
+                item.addEventListener('click', function () {
+                    // Remove "active" class from all list items
 
                     // Add "active" class to the clicked list item
-                    this.classList.add('active');
+                    this.classList.toggle('active');
                 });
             });
 
@@ -123,11 +139,8 @@
             document.querySelector('.ok_done a').addEventListener('click', function () {
                 let targetElement = document.getElementById('selected-states-list');
                 targetElement.classList.add('selectedlist');
-            }); 
+            });
         </script>
-		
-	</body>
-</html>
-      
-    
 
+    </body>
+</html>

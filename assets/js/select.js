@@ -131,75 +131,45 @@
             }
         };
 
-        /* blue */
-        document.querySelector('li#orange').addEventListener('click', function () {
-            blue_select();
-        });
-        var blue_select = function () {
-            for (var state in simplemaps_usmap_mapinfo.paths) {
-                var ul = document.getElementById('selected-states-list');
-                var li = document.createElement('li');
-                if (state == "WA" || state == "OR" || state == "NV" || state == "CA") {
-                    select(state);
-                    li.textContent = state;
-                    ul.appendChild(li);
-                }
-            }
-        };
-        /* Green */
-        document.querySelector('li#green').addEventListener('click', function () {
-            green_select();
-        });
-        var green_select = function () {
-
-            for (var state in simplemaps_usmap_mapinfo.paths) {
-                var ul = document.getElementById('selected-states-list');
-                var li = document.createElement('li');
-                if (state == "MT" || state == "ID" || state == "WY" || state == "SD" || state == "UT" || state == "CO" || state == "AZ" || state == "NM") {
-                    select(state);
-                    li.textContent = state;
-                    ul.appendChild(li);
-                }
-            }
-        };
-        /* Red */
-        document.querySelector('li#red').addEventListener('click', function () {
-            red_select();
-        });
-        var red_select = function () {
-            for (var state in simplemaps_usmap_mapinfo.paths) {
-                var ul = document.getElementById('selected-states-list');
-                var li = document.createElement('li');
-                if (state == "ND" || state == "MN" || state == "WI" || state == "IL" || state == "IA" || state == "MO" || state == "NE" || state == "KS" || state == "TN" || state == "AL" || state == "MS" || state == "AR" || state == "LA" || state == "TX" || state == "OK") {
-                    select(state);
-                    li.textContent = state;
-                    ul.appendChild(li);
-                }
-            }
-        };
-        /* yellow */
-        document.querySelector('li#purple').addEventListener('click', function () {
-            yellow_select();
-        });
-        var yellow_select = function () {
-            for (var state in simplemaps_usmap_mapinfo.paths) {
-                var ul = document.getElementById('selected-states-list');
-                var li = document.createElement('li');
-                if (state == "GA" || state == "SC" || state == "FL" || state == "VA" || state == "NC" || state == "WV" || state == "KY" || state == "IN" || state == "OH" || state == "VT" || state == "NJ" || state == "DE" || state == "DC" || state == "MD" || state == "RI" || state == "MA" || state == "MI" || state == "PA" || state == "NY" || state == "ME" || state == "NH" || state == "CT" || state == "HI" || state == "AK") {
-                    select(state);
-                    li.textContent = state;
-                    ul.appendChild(li);
-                }
-            }
-        };
-        /* deslect */
-        document.querySelector('span#deselect-Ok').addEventListener('click', function () {
-            deselect_all()
+        var stateButtons = [
+            { id: 'orange', states: ["WA", "OR", "NV", "CA"], color: 'orange' },
+            { id: 'green', states: ["MT", "ID", "WY", "SD", "UT", "CO", "AZ", "NM"], color: 'green' },
+            { id: 'red', states: ["ND", "MN", "WI", "IL", "IA", "MO", "NE", "KS", "TN", "AL", "MS", "AR", "LA", "TX", "OK"], color: 'red' },
+            { id: 'purple', states: ["GA", "SC", "FL", "VA", "NC", "WV", "KY", "IN", "OH", "VT", "NJ", "DE", "DC", "MD", "RI", "MA", "MI", "PA", "NY", "ME", "NH", "CT", "HI", "AK"], color: 'yellow' }
+          ];
+          
+          var toggleStates = function (button) {
             var ul = document.getElementById('selected-states-list');
-            while (ul.firstChild) {
-                ul.removeChild(ul.firstChild);
+          
+            // Check if any state of the given color is already selected and remove them from the list and map
+            var existingStates = ul.querySelectorAll(`li[data-state="${button.color}"]`);
+            if (existingStates.length > 0) {
+              existingStates.forEach(function (stateElement) {
+                stateElement.remove();
+                deselect(stateElement.textContent);
+              });
+              return; // Exit the function
             }
-        });
+          
+            // Select and add the states to the list and map
+            button.states.forEach(function (state) {
+              select(state);
+              var li = document.createElement('li');
+              li.textContent = state;
+              li.setAttribute('data-state', button.color);
+              ul.appendChild(li);
+            });
+          };
+          
+          stateButtons.forEach(function (button) {
+            document.querySelector(`li#${button.id}`).addEventListener('click', function () {
+              toggleStates(button);
+            });
+          });
+          
+
+
+        /* deslect */
         var deselect_all = function () {
             var length = selected.length;
             for (var i = 1; i < length + 1; i++) {
