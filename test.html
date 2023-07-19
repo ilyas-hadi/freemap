@@ -17,6 +17,8 @@
             }
             ul#selected-states-list.selectedlist {
                 display: flex;
+                justify-content: center;
+                padding-left: 0;
             }
             .Main_map {
                 overflow: hidden;
@@ -36,7 +38,7 @@
                 margin-bottom: 0;
             }
 
-            div#selectedStates ul li{
+            div#selectedStates ul li {
                 padding: 0.6rem 1.2rem;
                 margin: 1rem;
                 cursor: pointer;
@@ -92,9 +94,33 @@
                 transition: all 0.3s;
             }
 
+            div#selectedStates ul li:nth-of-type(1) {
+                background: #b0b4cb;
+            }
+
+            div#selectedStates ul li:nth-of-type(2) {
+                background: #c7cb66;
+            }
+            div#selectedStates ul li:nth-of-type(3) {
+                background: #f6a35b;
+            }
+            div#selectedStates ul li:nth-of-type(4) {
+                background: #ffe972;
+            }
+            div#selectedStates ul li:hover {
+                background: #4a4747;
+            }
             ul#selected-states-list li:hover {
                 background: #000;
                 color: #fff;
+            }
+            h1.s-sate-hd {
+                font-size: 1.3rem;
+                background: orange;
+                color: #fff;
+                padding: 0.4rem;
+                text-align: center;
+                margin-top: 5rem;
             }
         </style>
     </head>
@@ -102,19 +128,20 @@
         <div class="Main_map">
             <div id="selectedStates">
                 <ul>
-                    <li id="orange">Blue</li>
-                    <li id="green">Green</li>
-                    <li id="red">Red</li>
-                    <li id="purple">yellow</li>
+                    <li id="orange">PACIFIC</li>
+                    <li id="green">MOUNTAIN</li>
+                    <li id="red">CENTRAL</li>
+                    <li id="purple">EASTERN</li>
                 </ul>
             </div>
-
+            <!-- INISIALIZE MAP -->
             <div id="map"></div>
+
             <div class="ok_done">
                 <a href="#selected-states-list">Ok</a>
             </div>
 
-            <h1>Selected States</h1>
+            <h1 class="s-sate-hd">Selected States</h1>
             <ul id="selected-states-list"></ul>
         </div>
         <!-- scripts -->

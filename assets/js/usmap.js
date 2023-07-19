@@ -5808,6 +5808,7 @@ var simplemaps_usmap_mapinfo = {
                         }
                         var _ = ez.text(m.x, m.y, t.name);
                         tu[e] = _;
+                        
                     } else var _ = tu[e];
                     (_.sm = {}), (_.sm.hide = t.hide), u && (u.sm.hide_label || u.sm.hide) && (_.sm.hide = !0), (_.sm.parent = u), u.sm.labels.push(_), u.sm.region && tl[u.sm.region].sm.labels.push(_);
                     var v = { "stroke-width": 0, fill: t.color, "font-size": t.size, "font-weight": "bold", cursor: "pointer", "font-family": t.font_family, "text-anchor": t.anchor, opacity: t.opacity },

@@ -130,7 +130,7 @@
                 select(state);
             }
         };
-
+        /* buttons functionality */
         var stateButtons = [
             { id: 'orange', states: ["WA", "OR", "NV", "CA"], color: 'orange' },
             { id: 'green', states: ["MT", "ID", "WY", "SD", "UT", "CO", "AZ", "NM"], color: 'green' },
